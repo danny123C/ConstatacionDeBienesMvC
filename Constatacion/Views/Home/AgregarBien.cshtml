@@ -1,0 +1,274 @@
+﻿@using Persistencia.Models
+@model Persistencia.Models.Bien
+@functions {
+    public List<SelectListItem> ObtenerOpcionesTipoMantenimiento()
+    {
+        return new List<SelectListItem>
+        {
+            new SelectListItem { Value = "2", Text = "Ninguno" },
+            new SelectListItem { Value = "3", Text = "Preventivo" },
+            new SelectListItem { Value = "4", Text = "Correctivo" },
+            // Puedes agregar más opciones según sea necesario
+        };
+    }
+
+    public List<SelectListItem> ObtenerOpcionesIdDependencia()
+    {
+        return new List<SelectListItem>
+        {
+            new SelectListItem { Value = "8", Text = "RECTORADO" },
+            new SelectListItem { Value = "9", Text = "SECRETARÍA GENERAL" },
+            new SelectListItem { Value = "10", Text = "DIRECCIÓN DE PLANIFICACIÓN INSTITUCIONAL" },
+            new SelectListItem { Value = "11", Text = "DIRECCIÓN DE EVALUACIÓN PARA EL ASEGURAMIENTO DE LA CALIDAD" },
+            new SelectListItem { Value = "12", Text = "PROCURADURÍA" },
+            new SelectListItem { Value = "13", Text = "COORDINACIÓN DE GESTIÓN DE LA CALIDAD" },
+            new SelectListItem { Value = "14", Text = "COORDINACIÓN DE COMUNICACIÓN INSTITUCIONAL" },
+            new SelectListItem { Value = "15", Text = "COORDINACIÓN DE GESTIÓN DE RELACIONES NACIONALES E INTERNACIONALES" },
+            new SelectListItem { Value = "16", Text = "VICERRECTORADO ADMINISTRATIVO" },
+             new SelectListItem { Value = "17", Text = "VICERRECTORADO ACADÉMICO" },
+            new SelectListItem { Value = "18", Text = "VICERRECTORADO DE INVESTIGACIÓN, VINCULACIÓN Y POSGRADO" },
+            new SelectListItem { Value = "19", Text = "DIRECCIÓN DE ADMINISTRACIÓN DEL TALENTO HUMANO" },
+             new SelectListItem { Value = "20", Text = "DIRECCIÓN FINANCIERA" },
+            new SelectListItem { Value = "21", Text = "DIRECCIÓN ADMINISTRATIVA" },
+            new SelectListItem { Value = "22", Text = "DIRECCIÓN DE TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN" },
+             new SelectListItem { Value = "23", Text = "COORDINACIÓN DE GESTIÓN DEL SERVICIO INTEGRADO DE SALUD UNIVERSITARIA" },
+            new SelectListItem { Value = "24", Text = "DIRECCIÓN ACADÉMICA" },
+            new SelectListItem { Value = "25", Text = "COORDINACIÓN DE ADMISIÓN Y NIVELACIÓN" },
+            new SelectListItem { Value = "26", Text = "COORDINACIÓN DE FORMACIÓN COMPLEMENTARIA" },
+            new SelectListItem { Value = "27", Text = "COORDINACIÓN DE COMPETENCIAS LINGUISTICAS" },
+            new SelectListItem { Value = "28", Text = "COORDINACIÓN DE EDUCACIÓN ABIERTA Y A DISTANCIA" },
+            new SelectListItem { Value = "29", Text = "SECRETARÍA ACADÉMICA" },
+            new SelectListItem { Value = "30", Text = "COORDINACIÓN DE GESTIÓN DE BIBLIOTECAS" },
+            new SelectListItem { Value = "31", Text = "COORDINACIÓN DE GESTIÓN DE BIENESTAR ESTUDIANTIL Y UNIVERSITARIO" },
+            new SelectListItem { Value = "32", Text = "FACULTAD DE CIENCIAS DE LA EDUCACIÓN, HUMANAS Y TECNOLOGÍAS" },
+            new SelectListItem { Value = "33", Text = "FACULTAD DE CIENCIAS DE LA SALUD" },
+            new SelectListItem { Value = "34", Text = "FACULTAD DE INGENIERÍA" },
+            new SelectListItem { Value = "35", Text = "FACULTAD DE CIENCIAS POLÍTICAS Y ADMINISTRATIVAS" },
+            new SelectListItem { Value = "36", Text = "DIRECCIÓN DE INVESTIGACIÓN" },
+            new SelectListItem { Value = "37", Text = "DIRECCIÓN DE POSGRADO" },
+            new SelectListItem { Value = "38", Text = "DIRECCIÓN DE VINCULACIÓN CON LA SOCIEDAD" },
+            new SelectListItem { Value = "39", Text = "COORDINACIÓN DE GESTIÓN DE NÓMINA Y REMUNERACIONES" },
+            new SelectListItem { Value = "40", Text = "COORDINACIÓN DE GESTIÓN DE TESORERÍA" },
+            new SelectListItem { Value = "41", Text = "COORDINACIÓN DE GESTIÓN DE CONTABILIDAD" },
+            new SelectListItem { Value = "42", Text = "COORDINACIÓN DE GESTIÓN DE COMPRAS PÚBLICAS" },
+            new SelectListItem { Value = "43", Text = "COORDINACIÓN DE GESTIÓN DE INFRAESTRUCTURA Y MANTENIMIENTO" },
+            new SelectListItem { Value = "44", Text = "COORDINACIÓN DE GESTIÓN DE DESARROLLO DE SISTEMAS INFORMÁTICOS" },
+            new SelectListItem { Value = "45", Text = "LICENCIATURA EN BIOLOGIA QUIMICA Y LABORATORIO" },
+            new SelectListItem { Value = "46", Text = "LICENCIATURA EN DISEÑO GRÁFICO (R)" },
+            new SelectListItem { Value = "47", Text = "LICENCIATURA EN EDUCACIÓN BÁSICA (R)" },
+            new SelectListItem { Value = "48", Text = "LICENCIATURA EN EDUCACIÓN INICIAL (R)" },
+            new SelectListItem { Value = "49", Text = "LICENCIATURA EN PEDAGOGÍA DE LA ACTIVIDAD FÍSICA Y DEPORTE (R)" },
+             new SelectListItem { Value = "50", Text = "LICENCIATURA EN PEDAGOGÍA DE LA HISTORIA Y LAS CIENCIAS SOCIALES (R)" },
+            new SelectListItem { Value = "51", Text = "LICENCIATURA EN PEDAGOGÍA DE LA LENGUA Y LITERATURA (R)" },
+            new SelectListItem { Value = "52", Text = "LICENCIATURA EN PEDAGOGÍA DE LAS ARTES Y HUMANIDADES (R)" },
+             new SelectListItem { Value = "53", Text = "LICENCIATURA EN PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES: INFORMÁTICA (R)" },
+            new SelectListItem { Value = "54", Text = "LICENCIATURA EN PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES: MATEMÁTICAS Y LA FÍSICA (R)" },
+            new SelectListItem { Value = "55", Text = "LICENCIATURA EN PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES: QUÍMICA Y BIOLOGÍA (R)" },
+             new SelectListItem { Value = "56", Text = "LICENCIATURA EN PEDAGOGÍA DE LOS IDIOMAS NACIONALES Y EXTRANJEROS (R)" },
+            new SelectListItem { Value = "57", Text = "LICENCIATURA EN PSICOPEDAGOGÍA (R)" },
+            new SelectListItem { Value = "58", Text = "CULTURA FÍSICA" },
+            new SelectListItem { Value = "59", Text = "ENFERMERIA (R)" },
+            new SelectListItem { Value = "60", Text = "FISIOTERAPIA (R)" },
+            new SelectListItem { Value = "61", Text = "LABORATORIO CLINICO (R)" },
+            new SelectListItem { Value = "62", Text = "MEDICINA (R)" },
+            new SelectListItem { Value = "63", Text = "ODONTOLOGIA (R)" },
+            new SelectListItem { Value = "64", Text = "PSICOLOGIA CLINICA (R)" },
+            new SelectListItem { Value = "65", Text = "AGROINDUSTRIA (R)" },
+            new SelectListItem { Value = "66", Text = "ARQUITECTURA (R)" },
+            new SelectListItem { Value = "67", Text = "INGENIERÍA AMBIENTAL (R)" },
+            new SelectListItem { Value = "68", Text = "INGENIERÍA CIVIL (R)" },
+            new SelectListItem { Value = "69", Text = "INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN (R)" },
+            new SelectListItem { Value = "70", Text = "INGENIERÍA EN TELECOMUNICACIONES (R)" },
+            new SelectListItem { Value = "71", Text = "INGENIERÍA INDUSTRIAL (R)" },
+            new SelectListItem { Value = "72", Text = "CONTABILIDAD Y AUDITORIA (R)" },
+            new SelectListItem { Value = "73", Text = "DERECHO (R)" },
+            new SelectListItem { Value = "74", Text = "ECONOMÍA (R)" },
+            new SelectListItem { Value = "75", Text = "LICENCIATURA EN ADMINISTRACIÓN DE EMPRESAS (R)" },
+            new SelectListItem { Value = "76", Text = "LICENCIATURA EN COMUNICACIÓN (R)" },
+            new SelectListItem { Value = "77", Text = "TURISMO (R)" },
+            new SelectListItem { Value = "78", Text = "PROCESOS INSTITUCIONALES" },
+            new SelectListItem { Value = "79", Text = "Coordinación de Bienes e Inventarios" },
+        };
+    }
+
+
+    public List<SelectListItem> ObtenerCampus()
+    {
+        return new List<SelectListItem>
+        {
+            new SelectListItem { Value = "2", Text = "Msc. Edison Riera" },
+            new SelectListItem { Value = "5", Text = "La Dolorosa" },
+            new SelectListItem { Value = "12", Text = "Centro" },
+            new SelectListItem { Value = "4", Text = "Desconocido" },
+            // Puedes agregar más opciones según sea necesario
+        };
+    }
+    public List<SelectListItem> ConstatadoOpciones()
+    {
+        return new List<SelectListItem>
+        {
+            new SelectListItem { Value = "Fale", Text = "No" },
+            new SelectListItem { Value = "True", Text = "Si" },
+       
+        };
+    }
+
+}
+
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="StyleIndex.css"> <!-- Enlaza tu hoja de estilo aquí -->
+    <title>Bienes</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+<style>
+
+    .btn-container {
+        margin-top: 20px; /* Márgenes entre los botones y el contenido */
+        clear: both; /* Limpia los elementos flotantes antes de los botones */
+        }
+
+        label {
+            font-weight: bold;
+            float: left; /* Hace que el label flote a la izquierda */
+            width: 150px; /* Ajusta el ancho del label según tus necesidades */
+            font-weight: bold;
+        }
+</style>
+</head>
+<body>
+
+    <!-- Begin Page Content ---------------------------------------->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        </div>
+
+        <!-- Content Row -->
+
+        <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-7">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">AGREGAR NUEVO</h6>
+                        <!------------------------------------------------------------------------------->
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+
+                        <form asp-action="AgregarBien" asp-controller="Home" method="post">
+
+
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="codigoEsbay" style="width: 150px; margin-right: 10px;">CodigoEsbay:</label>
+                                <input type="text" class="form-control" asp-for="CodigoEsbay"  placeholder="1234...." required>
+
+                                @if (ViewData.ContainsKey("ErrorCodigoEsbay"))
+                                {
+                                    <div style="color: red;">@ViewData["ErrorCodigoEsbay"]</div>
+                                }
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="codigoOlimpo" style="width: 150px; margin-right: 10px;">CodigoOlimpo:</label>
+                                <input type="text" class="form-control" asp-for="CodigoOlimpo" placeholder="0234.." required>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="descripcion" style="width: 150px; margin-right: 10px;">Descripcion:</label>
+                                <input type="text" class="form-control" asp-for="Descripcion" placeholder="BIENES SUJETOS A CONTROL/BARRA...."  required>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="serie" style="width: 150px; margin-right: 10px;">Serie:</label>
+                                <input type="text" class="form-control" asp-for="Serie" placeholder="CRIS37.." required>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="nombres" style="width: 150px; margin-right: 10px;">Marca:</label>
+                                <input type="text" class="form-control" asp-for="Marca" placeholder="SAMSUNG.." required>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="modelo" style="width: 150px; margin-right: 10px;">Modelo:</label>
+                                <input type="text" class="form-control" asp-for="Modelo" placeholder="LC 5K.." required>
+                            </div>
+                        
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="custodio" style="width: 150px; margin-right: 10px;">Custodio:</label>
+                                <input type="text" class="form-control" asp-for="Custodio" placeholder="APELLIDOS NOMBRES" required>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="FechaIngreso" style="width: 150px; margin-right: 10px;">Fecha de Ingreso:</label>
+                                <input type="text" class="form-control" asp-for="FechaIngreso" id="datepicker" required>
+                            </div>
+                   
+
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="idDependencia" style="width: 150px; margin-right: 10px;">Dependencia:</label>
+                                <select asp-for="IdDependencia" asp-items="ObtenerOpcionesIdDependencia()" class="form-control" required>
+                                </select>
+                            </div>
+
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="idCampus" style="width: 150px; margin-right: 10px;">Campus:</label>
+                                <select asp-for="IdCampus" asp-items="ObtenerCampus()" class="form-control" required>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="IdTipoMantenimiento" style="width: 150px; margin-right: 10px;">Tipo de Mantenimiento:</label>
+                                <select asp-for="IdTipoMantenimiento" asp-items="ObtenerOpcionesTipoMantenimiento()" class="form-control" required>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="observaciones" style="width: 150px; margin-right: 10px;">Observaciones:</label>
+                                <input type="text" class="form-control" asp-for="Observaciones" required>
+                            </div>
+
+
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                <label for="constatado" style="width: 150px; margin-right: 10px;">Constatado:</label>
+                                <select asp-for="Constatado" asp-items="ConstatadoOpciones()" class="form-control" required>
+                                </select>
+                            
+                            </div>
+
+                          
+                            <br />
+                          <center>
+                            <div class="btn-container">
+                                <a class="btn btn-primary" asp-action="Index" asp-controller="Home" >Volver a la Búsqueda</a>
+                              
+                                <button type="submit" class="btn btn-success"> AGREGAR</button>
+                            </div>
+                            </center>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+
+                $(function () {
+                    $("#datepicker").datepicker({
+                        dateFormat: "yy-mm-dd", // Formato de fecha deseado
+                        changeMonth: true,
+                        changeYear: true
+                        // Puedes agregar más opciones según sea necesario
+                    });
+                });
+            </script>
+</body>
+</html>

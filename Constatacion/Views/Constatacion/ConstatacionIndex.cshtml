@@ -1,0 +1,321 @@
+﻿@using Persistencia.Models
+@model List<Bien>
+
+@{
+    Layout = "_Layout"; // Asegúrate de que estás utilizando el _Layout correcto
+ 
+}
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+   
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    /* Estilos para los encabezados */
+    h1, h2 {
+        text-align: center;
+    }
+
+    h2 {
+        margin-top: 30px;
+    }
+
+    form {
+        margin-bottom: 20px; /* Ajusta el margen entre el formulario y la tabla */
+    }
+
+    .center1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .verde {
+        color: green;
+    }
+
+    .rojo {
+        color: red;
+    }
+</style>
+
+<html>
+      <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-twQYOCx01hGDP9KR7L/OMXDAOMJ2SrDrN6qF3L8Y5xkAqF5/hE68PjCy6ypd5c8n" crossorigin="anonymous">
+           <link rel="stylesheet" href="StyleIndex.css"> <!-- Enlaza tu hoja de estilo aquí -->
+            <title>Estudiantes</title>
+     </head>
+     <body>
+
+        <!-- Begin Page Content ---------------------------------------->
+        <div class="container-fluid">
+        </br>
+        </br>
+
+
+        <div class="row justify-content-between">
+            <!-- Contenedor a la izquierda -->
+            <div class="col-xl-6">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Constatacion</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <!-- BUSCAR POR CODIGO -->
+                    <div class="d-sm-flex align-items-center justify-content-between" style="padding-bottom: 26px; margin-top: 25px;">
+                        <form method="get" action="/Constatacion/BuscarPorCodigoEsbay" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search ml-auto" id="codigoEsbayForm">
+                           
+                            
+                            <div class="input-group">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" id="mostrarInput">
+                                        <i class="fas fa-search fa-sm"></i> Leer Codigo De Barras
+                                    </button>
+                                </div>
+                                <div id="campoInput" style="display: none;">
+                                    <input type="text" name="codigoEsbay" id="codigoEsbay" class="form-control bg-light border-0 small" placeholder="Codigo Bien..." aria-label="Search" aria-describedby="basic-addon2">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor a la derecha -->
+            <div class="col-xl-6">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Generar Codigo</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="d-sm-flex align-items-center justify-content-between flex-column" style="padding-bottom: 20px; margin-top: 10px;">
+
+                        <div class="mb-3">
+                            <input type="text" id="codigoInput" aria-label="Ingresar Código" />
+                         
+                            <button onclick="generarCodigo()" style="margin-top: 11px;" class="btn-primary" >Generar Código</button>
+                        </div>
+
+                        <div id="barcode-section" style="display: none; margin-top: 10px;">
+                            
+                            <svg id="barcode-image"></svg>
+
+                            <button onclick="descargarCodigo()"> <i class="fas fa-download fa-sm"></i> Descargar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+                </div>
+            </div>
+
+                                        <div class="col-xl-12 col-lg-7">
+                                            <div class="card shadow mb-4">
+                                                <!-- Card Body -->
+                                                <div class="card-body">
+                                                    <!-- Agrega esta tabla para mostrar los resultados de la búsqueda -->
+                                                    <div style="width: 100%; overflow-x: auto; overflow-y: auto; max-height: 500px;">
+                                                      <center>
+                                                        @if (Model != null && Model.Count > 0)
+                                                                {
+                                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Constatado</th>
+                                                                                <th>Código </th>
+                                                                                <th>Descripción</th>
+                                                                                <th>Serie</th>
+                                                                                <th>Modelo</th>
+                                                                                <th>Marca</th>
+                                                                                <th>Custodio</th>
+                                                                                <th>Campus</th>
+                                                                                <!-- Agrega más columnas según las propiedades que desees mostrar -->
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @foreach (var bien in Model)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td class="@((bien.Constatado) ? "verde" : "rojo")">
+                                                                                        @(bien.Constatado ? "Sí" : "No")
+                                                                                    </td>
+                                                                                    <td>@bien.CodigoEsbay</td>
+                                                                                    <td>@bien.Descripcion</td>
+                                                                                    <td>@bien.Serie</td>
+                                                                                    <td>@bien.Modelo</td>
+                                                                                    <td>@bien.Marca</td>
+                                                                                    <td>@bien.Custodio</td>
+                                                                                   
+                                                                                   <td>
+                                                                                            @{
+                                                                                                string campusText = "";
+
+                                                                                                switch (bien.IdCampus)
+                                                                                                {
+                                                                                                    case 2:
+                                                                                                           campusText = "Msc. Edison Riera";
+                                                                                                        break;
+                                                                                                    case 5:
+                                                                                                           campusText = "La Dolorosa";
+                                                                                                        break;
+                                                                                                    case 12:
+                                                                                                           campusText = "Centro";
+                                                                                                           break;
+                                                    
+                                                                                                    default:
+                                                                                                        campusText = "Desconocido";
+                                                                                                        break;
+                                                                                                }
+
+                                                                                         
+                                                                                                @campusText
+                                                                                            }
+                                                                                        </td>
+
+                                                                                    <td>
+                                                <form asp-controller="Constatacion" asp-action="Constatar" method="post" id="constatarForm">
+                                                    <input type="hidden" name="codigoEsbay" value="@bien.CodigoEsbay" />
+
+                                                    <button type="submit">
+                                                        <i class="fas fa-check check-icon"></i>
+                                                    </button>
+                                                </form>
+
+                                                                                    </td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+                                                         }
+                                                         else
+                                                                {
+                          
+                                                                }
+
+                                            
+                                @if (TempData["Mensaje"] != null)
+                                {
+                                    <div class="alert alert-@TempData["TipoMensaje"]" role="alert">
+                                        @TempData["Mensaje"]
+                                    </div>
+                                }
+                    </center>
+                </div>
+            </div>
+        </div>
+
+                <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+                <script>
+            document.getElementById("codigoEsbay").addEventListener("input", function () {
+                // Ajusta la longitud del código según tus necesidades
+                var codigoLength = 10; // Cambia esto según la longitud esperada de tu código
+
+                // Verificar si el código tiene la longitud esperada
+                if (this.value.length === codigoLength) {
+                    // Enviar el formulario al controlador BuscarPorCodigoEsbay
+                    document.getElementById("codigoEsbayForm").submit();
+                }
+            });
+
+
+
+                    function generarCodigo() {
+                        var codigo = document.getElementById('codigoInput').value;
+
+                        if (!codigo) {
+                            alert('Por favor, ingresa un código antes de generar el código de barras.');
+                            return;
+                        }
+
+                        // Generar el código de barras utilizando JsBarcode
+                        JsBarcode("#barcode-image", codigo, {
+                            format: "CODE128",
+                            displayValue: true,
+                            fontSize: 12,
+                            width: 2,
+                            height: 50
+                        });
+
+                        // Mostrar la sección del código de barras
+                        document.getElementById('barcode-section').style.display = 'block';
+                    }
+
+                    function descargarCodigo() {
+                        var barcodeImage = document.getElementById('barcode-image');
+
+                        // Crear un lienzo temporal para convertir el SVG a PNG
+                        var canvas = document.createElement('canvas');
+                        canvas.width = barcodeImage.clientWidth;
+                        canvas.height = barcodeImage.clientHeight;
+                        var ctx = canvas.getContext('2d');
+
+                        // Crear una imagen a partir del contenido SVG y dibujarla en el lienzo
+                        var img = new Image();
+                        img.onload = function () {
+                            ctx.drawImage(img, 0, 0);
+
+                            // Obtener la URL de la imagen en formato PNG
+                            var pngUrl = canvas.toDataURL('image/png');
+
+                            // Crear un enlace temporal para la descarga
+                            var link = document.createElement('a');
+                            link.href = pngUrl;
+                            link.download = 'CodigoBarras.png';
+
+                            // Simular clic en el enlace para iniciar la descarga
+                            link.click();
+                        };
+
+                        // Convertir el contenido SVG a datos URI
+                        var svgXml = new XMLSerializer().serializeToString(barcodeImage);
+                        img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgXml);
+                    }
+            function prepararDespuesDeRecargar() {
+                // Mostrar el campo de entrada del código
+                document.getElementById("campoInput").style.display = "block";
+
+                // Darle el foco al campo de entrada del código
+                document.getElementById("codigoEsbay").focus();
+            }
+
+            // Asignar la función prepararDespuesDeRecargar al evento onload del cuerpo
+            document.body.onload = prepararDespuesDeRecargar;
+                </script>
+
+    </body>
+</html>
+

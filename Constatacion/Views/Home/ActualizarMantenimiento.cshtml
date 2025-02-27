@@ -1,0 +1,164 @@
+﻿@using Persistencia.Models
+@model Persistencia.Models.Mantenimiento
+
+
+@functions {
+    public List<SelectListItem> ObtenerOpcionesTipoEstadoBien()
+    {
+        return new List<SelectListItem>
+        {
+             new SelectListItem { Value = "1", Text = "Obsoleto" },
+            new SelectListItem { Value = "2", Text = "Inservible" },
+            new SelectListItem { Value = "3", Text = "Bueno dejado de Usar " },
+            new SelectListItem { Value = "4", Text = "Funcionando" },
+   
+        };
+    }
+
+    }
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="StyleIndex.css"> <!-- Enlaza tu hoja de estilo aquí -->
+    <title>Estudiantes</title>
+
+        <!-- Otras etiquetas head -->
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <!-- Estilo para el tema de jQuery UI (puedes elegir otro tema si lo deseas) -->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+        <!-- Otras referencias y estilos según sea necesario -->
+   
+<style>
+    .container {
+        text-align: center;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        overflow: hidden; /* Agrega un overflow para contener elementos flotantes */
+    }
+
+    label {
+        font-weight: bold;
+        float: left; /* Hace que el label flote a la izquierda */
+        width: 150px; /* Ajusta el ancho del label según tus necesidades */
+        font-weight: bold;
+    }
+
+    p {
+        margin: 0;
+        display: inline-block; /* Muestra el valor en la misma línea */
+    }
+
+    .btn-container {
+        margin-top: 20px; /* Márgenes entre los botones y el contenido */
+        clear: both; /* Limpia los elementos flotantes antes de los botones */
+    }
+
+    .btn {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+
+</style
+</head>
+<body>
+
+    <!-- Begin Page Content ---------------------------------------->
+    <div class="container-fluid">
+  
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        </div>
+
+        <!-- Content Row -->
+
+        <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-7">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">ESTADO DE LOS BIENES</h6>
+
+
+                        <!------------------------------------------------------------------------------->
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                    
+                        <div class="container">
+                            <div class="panel">
+                        <form id="formularioActualizar" asp-action="ActualizarMantenimiento" asp-controller="Home" method="post">
+                                 <div class="form-group" style="display: none; align-items: center;">
+                                    <label for="codigoOlimpo" style="width: 150px; margin-right: 10px;">Id:</label>
+                                    <input type="text" class="form-control" asp-for="Id">
+                                </div>
+
+                                <div class="form-group" style="display: none; align-items: center;">
+                                    <label for="descripcion" style="width: 150px; margin-right: 10px;">CodigoEsbay:</label>
+                                    <input type="text" class="form-control" asp-for="CodigoEsbay" required>
+                                </div>
+                                <div class="form-group" style="display: flex; align-items: center;">
+                                    <label for="serie" style="width: 150px; margin-right: 10px;">Motivo Mantenimiento:</label>
+                                    <input type="text" class="form-control" asp-for="MotivoMantenimiento" required>
+                                </div>
+                                   <div class="form-group" style="display: flex; align-items: center;">
+                                    <label for="serie" style="width: 150px; margin-right: 10px;">Acciones Realizadas:</label>
+                                    <input type="text" class="form-control" asp-for="AccionesRealizadas" required>
+                                </div>
+                                <div class="form-group" style="display: flex; align-items: center;">
+                                    <label for="serie" style="width: 150px; margin-right: 10px;">Nombre Tecnico:</label>
+                                    <input type="text" class="form-control" asp-for="NombreTecnico" required>
+                                </div>
+
+                                 <div class="form-group" style="display: flex; align-items: center;">
+                                    <label for="marca" style="width: 150px; margin-right: 10px;">Resultado:</label>
+                                    <input type="text" class="form-control" asp-for="Resultado" required>
+                                </div>
+
+                      
+                            
+                            <div class="form-group" style="display: flex; align-items: center;">
+                                 <label for="modelo" style="width: 150px; margin-right: 10px;">Estado del Bien:</label>
+                                <select asp-for="IdTipoEstadoBien" asp-items="ObtenerOpcionesTipoEstadoBien()" class="form-control" required>
+                                </select>
+                            </div>
+
+                           
+
+
+                              <div class="btn-container">
+                              
+                         
+                                 <button style="background-color: #28a745;"  type="submit" class="btn btn-primary">Actualizar </button>
+                                </div>
+                        </form>
+                        </div>
+                </div>
+
+                    </div>
+                </div>
+            </div>
+
+<!-- Resto de tu vista -->
+
+
+
+</body>
+</html>
+
+

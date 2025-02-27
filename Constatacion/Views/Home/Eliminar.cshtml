@@ -1,0 +1,99 @@
+﻿@using Persistencia.Models;
+@model Bien
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminación de Bien</title>
+    <style>
+        /* Estilos para el cuadro modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            text-align: center;
+        }
+
+        /* Estilos para los botones */
+        .btn-confirmar, .btn-cancelar {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-cancelar {
+            background-color: #dc3545;
+            margin: 5px;
+            padding: 10px 20px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cuadro modal -->
+    <div id="modalEliminar" class="modal">
+        <div class="modal-content">
+            <h2>Confirmar Eliminación</h2>
+            <p>¿Estás seguro de que deseas eliminar este bien? </p>
+        
+                <form asp-action="Eliminar" asp-controller="Home" method="post">
+                <div class="form-group">
+                    <input type="hidden" asp-for="CodigoEsbay" />
+                </div>
+
+                <!-- Agrega más campos si es necesario -->
+
+                <button class="btn btn-success" type="submit">Confirmar</button>
+                <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar el cuadro modal
+        function mostrarModal() {
+            document.getElementById("modalEliminar").style.display = "block";
+        }
+
+        // Función para cerrar el cuadro modal
+        function cerrarModal() {
+            document.getElementById("modalEliminar").style.display = "none";
+        }
+
+        // Ejecutar la función mostrarModal() al cargar la página
+        window.onload = function () {
+            mostrarModal();
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

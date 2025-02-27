@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<ul class="navbar-nav">
+  
+        <li class="nav-item">
+            <a class="nav-link dark-text" asp-controller="Usuarios" asp-action="LoginExterno" asp-route-proveedor="Microsoft">
+
+
+                Login/Registro
+            </a>
+        </li>
+    
+</ul>

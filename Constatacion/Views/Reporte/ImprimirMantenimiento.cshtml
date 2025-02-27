@@ -1,0 +1,235 @@
+﻿@model List<Constatacion.ViewModels.MatenimientosVM>
+
+@using System.Security.Claims
+
+<!-- Resto de tu vista -->
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ImprimirVenta</title>
+    <style>
+        .contenedor {
+            width: 900px !important;
+            height: 842px !important;
+            margin: auto;
+            font-size: 10px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif
+        }
+
+        p.title {
+            font-weight: bold;
+        }
+
+        p.title2 {
+            font-weight: bold;
+            color: #03A99F;
+            font-size: 20px;
+        }
+
+        p.text {
+            font-size: 15px;
+            font-weight: 100;
+            color: #858585;
+        }
+
+        p {
+            margin: 0px
+        }
+
+        .tbth {
+            text-align: left;
+        }
+
+        table.tbproductos {
+            border-collapse: separate;
+            border-spacing: 4px;
+            color: white;
+            background-color: #068013;
+        }
+
+            table.tbproductos thead tr th {
+                background-color: #068013;
+                padding: 10px;
+                font-size: 15px;
+                color: white;
+            }
+
+            table.tbproductos tbody tr td {
+                padding: 10px;
+                background-color: #8ECD87;
+            }
+
+        .item {
+            font-size: 15px;
+            font-weight: 100;
+            color: #757575;
+        }
+
+
+        .td-item {
+            border-bottom: 2px solid #E8E8E8 !important;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Estilos para la tabla */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 12px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        html :nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Estilos para los encabezados */
+        h1, h2 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        form {
+            margin-bottom: 100px; /* Ajusta el margen entre el formulario y la tabla */
+        }
+
+        .center1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <img src="~/images/UnachVirtual.png" style="width: 250px;" />
+                </td>
+
+
+            </tr>
+        </table>
+        <center>
+            <h3> UIVERSIDAD NACIONAL DE CHIMBORAZO</h3>
+            <h5> Campus Norte</h5>
+            <h5>Avda. Antonio José de Sucre, Km 1.5 Vía a Guano</h5>
+
+            <h5> +593-3 3730 880</h5>
+            <h5> info@unach.edu.ec</h5>
+        </center>
+
+
+
+        <br />
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <p class="title">Reporte Estado de Mantenimiento</p>
+                            </td>
+                        </tr>
+                       
+                   
+                    </table>
+                </td>
+
+            </tr>
+        </table>
+        <br />
+        <br />
+
+
+
+
+        <div class="col-xl-12 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Body -->
+                <div class="card-body">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Serie</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Custodio</th>
+                                <th>MotivoMantenimiento</th>
+                                <th>AccionesRealizadas</th>
+                                <th>Tecnico</th>
+                                <th>Estado</th>
+                                
+                               
+                              
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var mantenimiento in Model)
+                            {
+                                <tr>
+                                    <td>@mantenimiento.CodigoEsbay</td>
+                                    <td>@mantenimiento.Serie</td>
+                                    <td>@mantenimiento.Marca</td>
+                                    <td>@mantenimiento.Modelo</td>
+                                    <td>@mantenimiento.Custodio</td>
+                                    <td>@mantenimiento.MotivoMantenimiento</td>
+                                    <td>@mantenimiento.AccionesRealizadas</td>
+                                    <td>@mantenimiento.NombreTecnico</td>
+                                    <td>@mantenimiento.Resultado</td>
+                                    <td>@mantenimiento.Nombre</td>
+                                   
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

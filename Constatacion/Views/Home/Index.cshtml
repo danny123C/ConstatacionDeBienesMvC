@@ -1,0 +1,523 @@
+﻿@using Persistencia.Models
+@model List<Bien>
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="StyleIndex.css"> <!-- Enlaza tu hoja de estilo aquí -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <title>Estudiantes</title>
+
+
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+
+
+    th:nth-child(1), td:nth-child(1) {
+        width: 15%;
+    }
+
+    th:nth-child(2), td:nth-child(2) {
+        width: 15%;
+    }
+
+    th:nth-child(3), td:nth-child(3) {
+        width: 12%;
+    }
+
+    th:nth-child(4), td:nth-child(4) {
+        width: 12%;
+    }
+
+    th:nth-child(5), td:nth-child(5) {
+        width: 12%;
+    }
+
+    th:nth-child(6), td:nth-child(6) {
+        width: 12%;
+    }
+
+    th:nth-child(7), td:nth-child(7) {
+        width: 5%;
+    }
+
+    th:nth-child(8), td:nth-child(8) {
+        width: 5%;
+    }
+
+    th:nth-child(9), td:nth-child(9) {
+        width: 5%;
+    }
+    
+
+    th:nth-child(10), td:nth-child(10) {
+        width: 50%;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    /* Estilos para los encabezados */
+    h1, h2 {
+        text-align: center;
+    }
+
+    h2 {
+        margin-top: 30px;
+    }
+
+    form {
+        margin-bottom: 20px; /* Ajusta el margen entre el formulario y la tabla */
+    }
+
+    .center1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Basic styling for the form---------------- */
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    /* Style for labels */
+    label {
+        flex-basis: 100%;
+        margin-bottom: 8px;
+    }
+
+    /* Style for select dropdowns */
+    select {
+        flex-basis: calc(33.33% - 10px);
+        padding: 8px;
+        margin-bottom: 12px;
+        box-sizing: border-box;
+    }
+
+    /* Style for the search button */
+    button {
+        flex-basis: 100%;
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .verde {
+        color: green;
+    }
+
+    .rojo {
+        color: red;
+    }
+
+    th {
+        position: sticky;
+        top: 0;
+        background-color: #f1f1f1; /* Puedes ajustar el color de fondo según tu preferencia */
+    }
+
+    .table-container {
+        overflow-x: auto; /* Hace que el contenedor permita el desplazamiento horizontal si es necesario */
+        max-width: 100%; /* Ajusta el ancho máximo del contenedor según tus necesidades */
+    }
+
+    
+    .filter-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filter-item {
+        margin-bottom: 18px; /* Espacio entre los elementos select */
+    }
+
+    .custom-select {
+        width: 60%; /* Los elementos select ocuparán el 100% del ancho del contenedor */
+        /* Puedes ajustar el ancho según tus necesidades */
+    }
+   
+</style>
+
+
+<body>
+
+    <header>
+    </header>
+
+
+    <!-- Begin Page Content ---------------------------------------->
+    <div class="container-fluid">
+
+        <div class="d-flex mb-4">
+           
+            <div class="ml-auto">
+                </br>
+                
+                <h1 class="h3 mb-0 text-gray-800"></h1>
+                <a asp-controller="Home" asp-action="AgregarBien" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fas fa-plus fa-sm text-white-50"></i>
+                </a>
+            </div>
+        </div>
+
+       
+
+
+        <!-- Content Row -->
+
+        <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-7">
+                <div class="card shadow mb-7">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">ESTADO DE LOS BIENES</h6>
+                        <!-- BUSACOR POR CODIGO-->
+
+                        <div class="d-sm-flex align-items-center justify-content-between">
+
+                            <form method="get" action="/Home/BuscarPorCodigoEsbay" onsubmit="return validarBusqueda()" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search ml-auto">
+                                <div class="input-group">
+                                    <label>Codigo:</label>
+                                    <input type="text" name="codigoEsbay" id="codigoEsbay" class="form-control bg-light border-0 small" placeholder="12345"
+                                           aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <!------------------------------------------------------------------------------->
+                    </div>
+                    <div class="card-body">
+                        <form method="get" action="/Home/BuscarPorModelo">
+                            <div class="filter-column">
+                                <p> <i class="fas fa-search"></i> Buscar por:</p>
+                                <div class="filter-item">
+                                    <label for="marca">
+                                        Marca:
+                                    </label>
+                                    <select name="marca" id="marca" class="custom-select">
+                                        <!-- Opciones se agregarán dinámicamente aquí -->
+                                    </select>
+                                </div>
+
+                                <div class="filter-item">
+                                    <label for="modelo">
+                                         Modelo:
+                                    </label>
+                                    <select name="modelo" id="modelo" class="custom-select">
+                                        <!-- Opciones se agregarán dinámicamente aquí -->
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="filter-column" style="margin-top: 10px;">
+                                <p><i class="fa fa-bars" aria-hidden="true"></i> Filtrar por:</p>
+                                <div class="filter-item">
+                                    <label for="idDependencia">
+                                        <i class="fas fa-filter"></i> Dependencia:
+                                    </label>
+                                    <select name="idDependencia" id="idDependencia" class="custom-select">
+                                        <!-- Opciones se agregarán dinámicamente aquí -->
+                                        <option value="" selected>Selecciona </option>
+                                        <option value="8">RECTORADO</option>
+                                        <option value="9">SECRETARÍA GENERAL</option>
+                                        <option value="10">DIRECCIÓN DE PLANIFICACIÓN INSTITUCIONAL</option>
+                                        <option value="11">DIRECCIÓN DE EVALUACIÓN PARA EL ASEGURAMIENTO DE LA CALIDAD</option>
+                                        <option value="12">PROCURADURÍA</option>
+                                        <option value="13">COORDINACIÓN DE GESTIÓN DE LA CALIDAD</option>
+                                        <option value="14">COORDINACIÓN DE COMUNICACIÓN INSTITUCIONAL</option>
+                                        <option value="15">COORDINACIÓN DE GESTIÓN DE RELACIONES NACIONALES E INTERNACIONALES</option>
+                                        <option value="16">VICERRECTORADO ADMINISTRATIVO</option>
+                                        <option value="17">VICERRECTORADO ACADÉMICO</option>
+                                        <option value="18">VICERRECTORADO DE INVESTIGACIÓN, VINCULACIÓN Y POSGRADO</option>
+                                        <option value="19">DIRECCIÓN DE ADMINISTRACIÓN DEL TALENTO HUMANO</option>
+                                        <option value="20">DIRECCIÓN FINANCIERA</option>
+                                        <option value="21">DIRECCIÓN ADMINISTRATIVA</option>
+                                        <option value="22">DIRECCIÓN DE TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN</option>
+                                        <option value="23">COORDINACIÓN DE GESTIÓN DEL SERVICIO INTEGRADO DE SALUD UNIVERSITARIA</option>
+                                        <option value="24">DIRECCIÓN ACADÉMICA</option>
+                                        <option value="25">COORDINACIÓN DE ADMISIÓN Y NIVELACIÓN</option>
+                                        <option value="26">COORDINACIÓN DE FORMACIÓN COMPLEMENTARIA</option>
+                                        <option value="27">COORDINACIÓN DE COMPETENCIAS LINGÜÍSTICAS</option>
+                                        <option value="28">COORDINACIÓN DE EDUCACIÓN ABIERTA Y A DISTANCIA</option>
+                                        <option value="29">SECRETARÍA ACADÉMICA</option>
+                                        <option value="30">COORDINACIÓN DE GESTIÓN DE BIBLIOTECAS</option>
+                                        <option value="31">COORDINACIÓN DE GESTIÓN DE BIENESTAR ESTUDIANTIL Y UNIVERSITARIO</option>
+                                        <option value="32">FACULTAD DE CIENCIAS DE LA EDUCACIÓN, HUMANAS Y TECNOLOGÍAS</option>
+                                        <option value="33">FACULTAD DE CIENCIAS DE LA SALUD</option>
+                                        <option value="34">FACULTAD DE INGENIERÍA</option>
+                                        <option value="35">FACULTAD DE CIENCIAS POLÍTICAS Y ADMINISTRATIVAS</option>
+                                        <option value="36">DIRECCIÓN DE INVESTIGACIÓN</option>
+                                        <option value="37">DIRECCIÓN DE POSGRADO</option>
+                                        <option value="38">DIRECCIÓN DE VINCULACIÓN CON LA SOCIEDAD</option>
+                                        <option value="39">COORDINACIÓN DE GESTIÓN DE NÓMINA Y REMUNERACIONES</option>
+                                        <option value="40">COORDINACIÓN DE GESTIÓN DE TESORERÍA</option>
+                                        <option value="41">COORDINACIÓN DE GESTIÓN DE CONTABILIDAD</option>
+                                        <option value="42">COORDINACIÓN DE GESTIÓN DE COMPRAS PÚBLICAS</option>
+                                        <option value="43">COORDINACIÓN DE GESTIÓN DE INFRAESTRUCTURA Y MANTENIMIENTO</option>
+                                        <option value="44">COORDINACIÓN DE GESTIÓN DE DESARROLLO DE SISTEMAS INFORMÁTICOS</option>
+                                        <option value="45">LICENCIATURA EN BIOLOGÍA QUÍMICA Y LABORATORIO</option>
+                                        <option value="46">LICENCIATURA EN DISEÑO GRÁFICO (R)</option>
+                                        <option value="47">LICENCIATURA EN EDUCACIÓN BÁSICA (R)</option>
+                                        <option value="48">LICENCIATURA EN EDUCACIÓN INICIAL (R)</option>
+                                        <option value="49">LICENCIATURA EN PEDAGOGÍA DE LA ACTIVIDAD FÍSICA Y DEPORTE (R)</option>
+                                        <option value="50">LICENCIATURA EN PEDAGOGÍA DE LA HISTORIA Y LAS CIENCIAS SOCIALES (R)</option>
+                                        <option value="51">LICENCIATURA EN PEDAGOGÍA DE LA LENGUA Y LITERATURA (R)</option>
+                                        <option value="52">LICENCIATURA EN PEDAGOGÍA DE LAS ARTES Y HUMANIDADES (R)</option>
+                                        <option value="53">LICENCIATURA EN PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES: INFORMÁTICA (R)</option>
+                                        <option value="54">LICENCIATURA EN PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES: MATEMÁTICAS Y LA FÍSICA (R)</option>
+                                        <option value="55">LICENCIATURA EN PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES: QUÍMICA Y BIOLOGÍA (R)</option>
+                                        <option value="56">LICENCIATURA EN PEDAGOGÍA DE LOS IDIOMAS NACIONALES Y EXTRANJEROS (R)</option>
+                                        <option value="57">LICENCIATURA EN PSICOPEDAGOGÍA (R)</option>
+                                        <option value="58">CULTURA FÍSICA</option>
+                                        <option value="59">ENFERMERÍA (R)</option>
+                                        <option value="60">FISIOTERAPIA (R)</option>
+                                        <option value="61">LABORATORIO CLÍNICO (R)</option>
+                                        <option value="62">MEDICINA (R)</option>
+                                        <option value="63">ODONTOLOGÍA (R)</option>
+                                        <option value="64">PSICOLOGÍA CLÍNICA (R)</option>
+                                        <option value="65">AGROINDUSTRIA (R)</option>
+                                        <option value="66">ARQUITECTURA (R)</option>
+                                        <option value="67">INGENIERÍA AMBIENTAL (R)</option>
+                                        <option value="68">INGENIERÍA CIVIL (R)</option>
+                                        <option value="69">INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN (R)</option>
+                                        <option value="70">INGENIERÍA EN TELECOMUNICACIONES (R)</option>
+                                        <option value="71">INGENIERÍA INDUSTRIAL (R)</option>
+                                        <option value="72">CONTABILIDAD Y AUDITORÍA (R)</option>
+                                        <option value="73">DERECHO (R)</option>
+                                        <option value="74">ECONOMÍA (R)</option>
+                                        <option value="75">LICENCIATURA EN ADMINISTRACIÓN DE EMPRESAS (R)</option>
+                                        <option value="76">LICENCIATURA EN COMUNICACIÓN (R)</option>
+                                        <option value="77">TURISMO (R)</option>
+                                        <option value="78">PROCESOS INSTITUCIONALES</option>
+                                        <option value="79">Coordinación de Bienes e Inventarios</option>
+                                        <option value="14">Desconocido</option>
+                                        
+                                    </select>
+                                </div>
+
+                                <div class="filter-item">
+                                    <label for="idCampus">
+                                        <i class="fas fa-filter"></i> Campus:
+                                        
+                                    </label>
+                                    <select name="idCampus" id="idCampus" class="custom-select">
+                                        <!-- Agrega más opciones según tus necesidades -->
+                                        <option value="" selected>Selecciona </option>
+
+                                        <option value="2">Msc. Edison Riera</option>
+                                        <option value="5">La Dolorosa</option>
+
+                                        <option value="12">Centro</option>
+                                        <option value="14">Desconocido</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+
+
+                            <div class="table-container">
+                            <div >
+                                <div class="card shadow mb-4">
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <!-- Agrega esta tabla para mostrar los resultados de la búsqueda -->
+                                        <div style="width: 100%; overflow-x: auto; overflow-y: auto; max-height: 500px;">
+                                        @if (TempData["MensajeNoEncontrado"] != null)
+                                        {
+                                            <div class="alert alert-warning">
+                                                @TempData["MensajeNoEncontrado"]
+                                            </div>
+                                        }
+                                            else if (Model != null && Model.Count > 0)
+                                            {
+                                                <table >
+
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Código</th>
+                                                            <th>Descripción</th>
+                                                            <th>Serie</th>
+                                                            <th>Modelo</th>
+                                                            <th>Marca</th>
+                                                            <th>Custodio</th>
+                                                            <th>Constatado</th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+
+                                                            <!-- Agrega más columnas según las propiedades que desees mostrar -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var bien in Model)
+                                                        {
+                                                            <tr>
+                                                                <td>@bien.CodigoEsbay</td>
+                                                                <td>@bien.Descripcion</td>
+                                                                <td>@bien.Serie</td>
+                                                                <td>@bien.Modelo</td>
+                                                                <td>@bien.Marca</td>
+                                                                <td>@bien.Custodio</td>
+
+                                                                <td class="@((bien.Constatado) ? "verde" : "rojo")">
+                                                                    @(bien.Constatado ? "Sí" : "No")
+                                                                </td>
+
+                                                                <td>
+                                                                    <a  asp-action="ActualizarMantenimiento" asp-controller="Home" asp-route-codigoEsbay="@bien.CodigoEsbay" title="Mantenimiento">
+                                                                        <i class="fas fa-wrench"></i>
+                                                                    </a>
+                                                                </td>
+
+                                                                <td>
+                                                                    <a  asp-action="Detalle" asp-route-codigoEsbay="@bien.CodigoEsbay" title="Detalle">
+                                                                        <i class="fas fa-info-circle"></i>
+                                                                    </a>
+                                                                </td>
+
+                                                                <td>
+                                                                <a asp-action="Eliminar" asp-route-codigoEsbay="@bien.CodigoEsbay" title="Eliminar">
+                                                                    <i class="fas fa-trash"></i>
+                                                                </a>
+                                                                </td>
+
+
+                                                                <!-- Agrega más celdas según las propiedades que desees mostrar -->
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                    <!-- El resto del código de la tabla sigue aquí... -->
+                                                </table>
+                                            }
+                                           
+                                               
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- /.container-fluid -->
+
+                </div>
+        <script>
+            $(document).ready(function () {
+                var selectMarca = $('#marca');
+                var selectModelo = $('#modelo');
+                var selectDependencia = $('#idDependencia');
+                var selectCampus = $('#idCampus');
+
+                // Realizar solicitud AJAX para obtener marcas
+                $.get('/Home/ObtenerMarcas', function (marcas) {
+                    console.log('Marcas obtenidas:', marcas);
+
+                    // Limpiar opciones existentes y agregar opciones dinámicamente
+                    selectMarca.empty();
+                    $.each(marcas, function (index, value) {
+                        selectMarca.append($('<option>').text(value).val(value));
+                    });
+
+                    // Agregar evento change al campo de selección de marca
+                    selectMarca.change(function () {
+                        var selectedMarca = $(this).val();
+                        console.log('Marca seleccionada:', selectedMarca);
+
+                        // Realizar solicitud AJAX para obtener modelos asociados a la marca
+                        $.get('/Home/ObtenerModelosPorMarca?marca=' + selectedMarca, function (modelos) {
+                            console.log('Modelos obtenidos:', modelos);
+
+                            // Limpiar opciones existentes y agregar opciones dinámicamente
+                            selectModelo.empty();
+                            $.each(modelos, function (index, value) {
+                                selectModelo.append($('<option>').text(value).val(value));
+                            });
+
+                            // Obtener dependencias y campus asociados al modelo seleccionado
+                            obtenerDependencias();
+                            obtenerCampus();
+                        });
+                    });
+
+                    // Obtener dependencias y campus al cargar la página
+                    var selectedModeloInicial = selectModelo.val();
+                    obtenerDependencias();
+                    obtenerCampus();
+                });
+
+              
+            });
+        </script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,423 @@
+﻿@{
+    ViewData["Title"] = "Detalle";
+    Layout = "_Layout";
+}
+@functions {
+    public string GetTipoMantenimientoDescription(int? idTipoMantenimiento)
+    {
+        if (idTipoMantenimiento.HasValue)
+        {
+            switch (idTipoMantenimiento.Value)
+            {
+                case 2:
+                    return "Ninguno";
+                case 3:
+                    return "Preventivo";
+                case 4:
+                    return "Preventivo";
+                default:
+                    return "Correctivo";
+
+            }
+        }
+        else
+        {
+            return "Sin estado";
+        }
+    }
+
+
+    public string GetIdDependencia(int? idDependencia)
+    {
+        if (idDependencia.HasValue)
+        {
+            switch (idDependencia.Value)
+            {
+                case 8:
+                    return "RECTORADO";
+                case 9:
+                    return "SECRETARÍA GENERAL";
+                case 10:
+                    return "DIRECCIÓN DE PLANIFICACIÓN INSTITUCIONAL";
+                case 11:
+                    return "DIRECCIÓN DE EVALUACIÓN PARA EL ASEGURAMIENTO DE LA CALIDAD";
+                case 12:
+                    return "PROCURADURÍA";
+                case 13:
+                    return "COORDINACIÓN DE GESTIÓN DE LA CALIDAD";
+                case 14:
+                    return "COORDINACIÓN DE COMUNICACIÓN INSTITUCIONAL";
+                case 15:
+                    return "COORDINACIÓN DE GESTIÓN DE RELACIONES NACIONALES E INTERNACIONALES";
+                case 16:
+                    return "VICERRECTORADO ADMINISTRATIVO";
+                case 17:
+                    return "VICERRECTORADO ACADÉMICO";
+                case 18:
+                    return "VICERRECTORADO DE INVESTIGACIÓN, VINCULACIÓN Y POSGRADO";
+                case 19:
+                    return "DIRECCIÓN DE ADMINISTRACIÓN DEL TALENTO HUMANO";
+                case 20:
+                    return "DIRECCIÓN FINANCIERA";
+                case 21:
+                    return "DIRECCIÓN ADMINISTRATIVA";
+                case 22:
+                    return "DIRECCIÓN DE TECNOLOGÍAS DE LA INFORMACIÓN Y COMUNICACIÓN";
+                case 23:
+                    return "COORDINACIÓN DE GESTIÓN DEL SERVICIO INTEGRADO DE SALUD UNIVERSITARIA";
+                case 24:
+                    return "DIRECCIÓN ACADÉMICA";
+                case 25:
+                    return "COORDINACIÓN DE ADMISIÓN Y NIVELACIÓN";
+                case 26:
+                    return "COORDINACIÓN DE FORMACIÓN COMPLEMENTARIA";
+                case 27:
+                    return "COORDINACIÓN DE COMPETENCIAS LINGUISTICAS";
+                case 28:
+                    return "COORDINACIÓN DE EDUCACIÓN ABIERTA Y A DISTANCIA";
+                case 29:
+                    return "SECRETARÍA ACADÉMICA";
+                case 30:
+                    return "COORDINACIÓN DE GESTIÓN DE BIBLIOTECAS";
+                case 31:
+                    return "COORDINACIÓN DE GESTIÓN DE BIENESTAR ESTUDIANTIL Y UNIVERSITARIO";
+                case 32:
+                    return "FACULTAD DE CIENCIAS DE LA EDUCACIÓN, HUMANAS Y TECNOLOGÍAS";
+                case 33:
+                    return "FACULTAD DE CIENCIAS DE LA SALUD";
+                case 34:
+                    return "FACULTAD DE INGENIERÍA";
+                case 35:
+                    return "FACULTAD DE CIENCIAS POLÍTICAS Y ADMINISTRATIVAS";
+                case 36:
+                    return "DIRECCIÓN DE INVESTIGACIÓN";
+                case 37:
+                    return "DIRECCIÓN DE POSGRADO";
+                case 38:
+                    return "DIRECCIÓN DE VINCULACIÓN CON LA SOCIEDAD";
+                case 39:
+                    return "COORDINACIÓN DE GESTIÓN DE NÓMINA Y REMUNERACIONES";
+                case 40:
+                    return "COORDINACIÓN DE GESTIÓN DE TESORERÍA";
+                case 41:
+                    return "COORDINACIÓN DE GESTIÓN DE CONTABILIDAD";
+                case 42:
+                    return "COORDINACIÓN DE GESTIÓN DE COMPRAS PÚBLICAS";
+                case 43:
+                    return "COORDINACIÓN DE GESTIÓN DE INFRAESTRUCTURA Y MANTENIMIENTO";
+                case 44:
+                    return "COORDINACIÓN DE GESTIÓN DE DESARROLLO DE SISTEMAS INFORMÁTICOS";
+                case 45:
+                    return "LICENCIATURA EN BIOLOGIA QUIMICA Y LABORATORIO";
+                case 46:
+                    return "LICENCIATURA EN DISEÑO GRÁFICO (R)";
+                case 47:
+                    return "LICENCIATURA EN EDUCACIÓN BÁSICA (R)";
+                case 48:
+                    return "LICENCIATURA EN EDUCACIÓN INICIAL (R)";
+                case 49:
+                    return "LICENCIATURA EN PEDAGOGÍA DE LA ACTIVIDAD FÍSICA Y DEPORTE (R)";
+                case 50:
+                    return "LICENCIATURA EN PEDAGOGÍA DE LA HISTORIA Y LAS CIENCIAS SOCIALES (R)";
+                case 51:
+                    return "LICENCIATURA EN PEDAGOGÍA DE LA LENGUA Y LITERATURA (R)";
+                case 52:
+                    return "LICENCIATURA EN PEDAGOGÍA DE LAS ARTES Y HUMANIDADES (R)";
+                case 53:
+                    return "LICENCIATURA EN PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES: INFORMÁTICA (R)";
+                case 54:
+                    return "LICENCIATURA EN PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES: MATEMÁTICAS Y LA FÍSICA (R)";
+                case 55:
+                    return "LICENCIATURA EN PEDAGOGÍA DE LAS CIENCIAS EXPERIMENTALES: QUÍMICA Y BIOLOGÍA (R)";
+                case 56:
+                    return "LICENCIATURA EN PEDAGOGÍA DE LOS IDIOMAS NACIONALES Y EXTRANJEROS (R)";
+                case 57:
+                    return "LICENCIATURA EN PSICOPEDAGOGÍA (R)";
+                case 58:
+                    return "CULTURA FÍSICA";
+                case 59:
+                    return "ENFERMERIA (R)";
+                case 60:
+                    return "FISIOTERAPIA (R)";
+                case 61:
+                    return "LABORATORIO CLINICO (R)";
+                case 62:
+                    return "MEDICINA (R)";
+                case 63:
+                    return "ODONTOLOGIA (R)";
+                case 64:
+                    return "PSICOLOGIA CLINICA (R)";
+                case 65:
+                    return "AGROINDUSTRIA (R)";
+
+                case 66:
+                    return "ARQUITECTURA (R)";
+                case 67:
+                    return "INGENIERÍA AMBIENTAL (R)";
+                case 68:
+                    return "INGENIERÍA CIVIL (R)";
+                case 69:
+                    return "INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN (R)";
+                case 70:
+                    return "INGENIERÍA EN TELECOMUNICACIONES (R)";
+                case 71:
+                    return "INGENIERÍA INDUSTRIAL (R)";
+                case 72:
+                    return "CONTABILIDAD Y AUDITORIA (R)";
+                case 73:
+                    return "DERECHO (R)";
+                case 74:
+                    return "ECONOMÍA (R)";
+                case 75:
+                    return "LICENCIATURA EN ADMINISTRACIÓN DE EMPRESAS (R)";
+                case 76:
+                    return "LICENCIATURA EN COMUNICACIÓN (R)";
+                case 77:
+                    return "TURISMO (R)";
+                case 78:
+                    return "PROCESOS INSTITUCIONALES";
+                case 79:
+                    return "Coordinación de Bienes e Inventarios";
+                default:
+                    return "Desconocido";
+
+            }
+        }
+        else
+        {
+            return "Sin estado";
+        }
+    }
+    public string GetTipoIdCampus(int? idCampus)
+    {
+        if (idCampus.HasValue)
+        {
+            switch (idCampus.Value)
+            {
+                case 2:
+                    return "Msc. Edison Riera";
+                case 5:
+                    return "La Dolorosa";
+                case 12:
+                    return "Centro";
+                default:
+                    return "Desconocido";
+
+            }
+        }
+        else
+        {
+            return "Sin estado";
+        }
+    }
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="StyleIndex.css"> <!-- Enlaza tu hoja de estilo aquí -->
+        <title>Detalles del Bien</title>
+        <!-- Otras etiquetas head -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!-- Estilo para el tema de jQuery UI (puedes elegir otro tema si lo deseas) -->
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+
+    <style>
+        .container {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            overflow: hidden; /* Agrega un overflow para contener elementos flotantes */
+        }
+
+        label {
+            font-weight: bold;
+          
+            float: left; /* Hace que el label flote a la izquierda */
+            width: 150px; /* Ajusta el ancho del label según tus necesidades */
+            font-weight: bold;
+        }
+
+        p {
+            margin: 0;
+            display: inline-block; /* Muestra el valor en la misma línea */
+        }
+
+        .btn-container {
+            margin-top: 20px; /* Márgenes entre los botones y el contenido */
+            clear: both; /* Limpia los elementos flotantes antes de los botones */
+        }
+
+        .btn {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Color del botón principal */
+            color: #ffffff; /* Color del texto del botón principal */
+        }
+
+        .btn-success {
+            background-color: #28a745; /* Color del botón de éxito */
+            color: #ffffff; /* Color del texto del botón de éxito */
+        }
+
+     
+    </style>
+
+
+</head>
+<body>
+    <!-- Begin Page Content ---------------------------------------->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        </div>
+
+        <!-- Content Row -->
+
+        <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-7">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Detalle del Bien</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+
+                        <div class="container">
+                            <div class="panel">
+                                <div class="form-group">
+                                    <label>Codigo:</label>
+                                    <p>@Model.CodigoEsbay</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>CodigoOlimpo:</label>
+                                    <p>@Model.CodigoOlimpo</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Descripcion:</label>
+                                    <p>@Model.Descripcion</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Serie:</label>
+                                    <p>@Model.Serie</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+                                <!-- Agrega más campos según sea necesario -->
+
+                                <div class="form-group">
+                                    <label>Marca:</label>
+                                    <p>@Model.Marca</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Modelo:</label>
+                                    <p>@Model.Modelo</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Custodio:</label>
+                                    <p>@Model.Custodio</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>FechaIngreso:</label>
+                                    <p>@Model.FechaIngreso</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+                                <!-- Agrega más campos según sea necesario -->
+
+                                <div class="form-group">
+                                    <label>Dependencia:</label>
+                                    <p>@GetIdDependencia((int?)Model.IdDependencia)</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Campus:</label>
+                                    <p>@GetTipoIdCampus((int?)Model.IdCampus)</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+
+
+
+
+                                <div class="form-group">
+                                    <label>Mantenimiento:</label>
+                                    <p>@GetTipoMantenimientoDescription((int?)Model.IdTipoMantenimiento)</p>
+                                   
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <label>Observaciones:</label>
+                                    <p>@Model.Observaciones</p>
+                                    <hr> <!-- Línea de separación -->
+                                </div>
+
+                                <div class="btn-container">
+                                    <a class="btn btn-primary" asp-action="Index" asp-controller="Home" asp-route-codigoEsbay="@Model.CodigoEsbay">Volver a la Búsqueda</a>
+                                    <a class="btn btn-success" asp-action="Actualizar" asp-route-codigoEsbay="@Model.CodigoEsbay">Editar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            // Ocultar el botón de actualización de mantenimiento al cargar la página
+            $("#ActualizarMantenimientoBtn").hide();
+
+            // Manejar el cambio en el desplegable
+            $("#IdTipoMantenimientoSelect").change(function () {
+                // Obtener el valor seleccionado
+                var selectedValue = $(this).val();
+
+                // Mostrar u ocultar el botón de actualización de mantenimiento según la opción seleccionada
+                if (selectedValue === "3" || selectedValue === "4") {
+                    $("#ActualizarMantenimientoBtn").show();
+                } else {
+                    $("#ActualizarMantenimientoBtn").hide();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

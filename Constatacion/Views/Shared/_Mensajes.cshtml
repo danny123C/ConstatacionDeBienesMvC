@@ -1,0 +1,7 @@
+﻿<!-- _Mensajes.cshtml -->
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        @TempData["Mensaje"]
+    </div>
+}
